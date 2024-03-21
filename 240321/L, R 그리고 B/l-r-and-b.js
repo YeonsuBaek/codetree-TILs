@@ -31,7 +31,7 @@ const dy = [1, -1, 0, 0]
 while (queue.length > 0) {
     const { x, y, dist } = queue.shift()
 
-    if (input[x][y] === 'B') {
+    if (x === B[0] && y === B[1]) {
         console.log(dist - 1)
         return
     }
@@ -42,10 +42,9 @@ while (queue.length > 0) {
 
         if (nx < 0 || nx >= 10 || ny < 0 || ny >= 10) continue
 
-        if (input[nx][ny] === 'R') continue
-
-        if (visited[nx][ny] === 'v') continue
+        if (input[nx][ny] === 'R' || visited[nx][ny] === 'v') continue
 
         queue.push({ x: nx, y: ny, dist: dist + 1 })
+        visited[nx][ny] = 'v'
     }
 }

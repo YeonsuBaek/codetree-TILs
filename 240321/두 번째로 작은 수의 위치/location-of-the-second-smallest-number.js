@@ -6,4 +6,4 @@ const sortListSet = new Set(list.sort((a, b) => a - b))
 const sortList = [...sortListSet]
 const secondNum = sortList[1]
 const numOfSecondNum = list.filter(item => item === secondNum).length
-console.log(numOfSecondNum === 1 ? list.findIndex(item => item === secondNum) + 1 : -1)
+console.log(numOfSecondNum === 1 ? list.findIndex(item => item === secondNum) : -1)

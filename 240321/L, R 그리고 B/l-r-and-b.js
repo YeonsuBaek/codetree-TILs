@@ -1,20 +1,15 @@
 const fs = require('fs');
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n").map(list => list.split(''))
 
-let B = []
-let R = []
-let L = []
+let startX
+let startY
 
 for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
-        if (input[i][j] === 'B') {
-            B = [i, j]
-        }
-        if (input[i][j] === 'R') {
-            R = [i, j]
-        }
         if (input[i][j] === 'L') {
-            L = [i, j]
+            startX = i
+            startY = j
+            break
         }
     }
 }
@@ -22,8 +17,8 @@ for (let i = 0; i < 10; i++) {
 const visited = new Array(10).fill(0).map(() => new Array(10).fill('.'))
 const queue = []
 
-queue.push({ x: L[0], y: L[1], dist: 0 })
-visited[L[0]][L[1]] = 'v'
+queue.push({ x: startX, y: startY, dist: 0 })
+visited[startX][startY] = 'v'
 
 const dx = [0, 0 , 1, -1]
 const dy = [1, -1, 0, 0]
@@ -31,7 +26,7 @@ const dy = [1, -1, 0, 0]
 while (queue.length > 0) {
     const { x, y, dist } = queue.shift()
 
-    if (x === B[0] && y === B[1]) {
+    if (input[x][y] === 'B') {
         console.log(dist - 1)
         return
     }
